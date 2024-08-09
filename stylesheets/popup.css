@@ -4,7 +4,7 @@ body {
 }
 
 .wrapper {
-  aspect-ratio: 16/9;
-  width: 20em;
-  background: #333;
+  background: #f00;
+  aspect-ratio: 1/1;
+  width: 10em;
 }/*# sourceMappingURL=popup.css.map */
