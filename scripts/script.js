@@ -3,10 +3,20 @@
 const button = document.querySelector("#btn");
 
 button.addEventListener("click", async () => {
-  console.log("Sending to service worker");
-  const response = await chrome.runtime.sendMessage({
-    from: "index",
-    message: "Hello from Index",
-  });
-  console.log("From Service worker: ", response);
+  //to get the current url, you need to send a message to the service worker
+
+  chrome.runtime
+    .sendMessage({
+      action: "getCurrentTabUrl",
+    })
+    .then((response) => {
+      chrome.windows.create({
+        url: response.url,
+        type: "popup",
+        width: 400,
+        height: 300,
+        left: 100,
+        top: 100,
+      });
+    });
 });

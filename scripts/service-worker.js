@@ -3,19 +3,22 @@
 //this is like a backend bit of the extension
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  const { from, message } = request;
-  switch (from) {
-    case "content-script":
-      sendResponse({ data: { message: message } });
-      break;
+  const { action } = request;
 
-    case "index":
-      sendResponse({ data: { message: message } });
+  switch (action) {
+    case "getCurrentTabUrl":
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs.length > 0) {
+          const currentTab = tabs[0];
+          sendResponse({ url: currentTab.url });
+        } else {
+          sendResponse({ url: null });
+        }
+      });
       break;
-
     default:
-      sendResponse({ data: "an error occured" });
       break;
   }
-  console.log(`From: ${from} | Message: ${message}`);
+
+  return true;
 });

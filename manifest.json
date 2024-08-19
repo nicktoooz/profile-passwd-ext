@@ -23,6 +23,6 @@
     "service_worker": "./scripts/service-worker.js",
     "type": "module"
   },
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "tabs", "windows"],
   "host_permissions": ["https://developer.chrome.com/*"]
 }
