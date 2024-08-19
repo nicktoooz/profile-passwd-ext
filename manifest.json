@@ -1,16 +1,28 @@
 {
   "manifest_version": 3,
-  "name": "Profile Password",
+  "name": "Hello Chrome",
+  "description": "My first chrome extension",
   "version": "1.0",
-  "background": {
-    "service_worker": "./scripts/service_worker.js",
-    "type": "module"
+  "action": {
+    "default_popup": "./index.html",
+    "default_icon": "./images/icon.png"
+  },
+  "icons": {
+    "16": "./images/icon.png",
+    "32": "./images/icon.png",
+    "48": "./images/icon.png",
+    "128": "./images/icon.png"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["./scripts/content_script.js"]
+      "js": ["./scripts/content-script.js"]
     }
   ],
-  "permissions": ["storage", "activeTab", "tabs"]
+  "background": {
+    "service_worker": "./scripts/service-worker.js",
+    "type": "module"
+  },
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://developer.chrome.com/*"]
 }
